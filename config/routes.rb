@@ -1,7 +1,12 @@
 Rails.application.routes.draw do
   root to: 'pages#index'
 
-  get '/secret', to: 'pages#index', as: :secret
+  resources :users, only: [:new, :create]
+  resources :sessions, only: [:new, :create, :destroy]
 
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  get '/secret', to: 'pages#index', as: :secret
+  get '/sign_up', to: 'users#new', as: :sign_up
+
+  get '/log_in', to: 'sessions#new', as: :log_in
+  delete '/log_out', to: 'sessions#destroy', as: :log_out
 end
