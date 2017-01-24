@@ -1,0 +1,10 @@
+<h1>Reset Password</h1>
+
+<%= form_tag :reset_passwords, method: :post do %>
+  <div class="form-group">
+    <%= label_tag :email %>
+    <%= email_field_tag :email, nil,  class: 'form-control', requred: true %>
+  </div>
+
+  <%= submit_tag 'Send me instructions', class: 'btn btn-primary btn-lg' %>
+<% end %>

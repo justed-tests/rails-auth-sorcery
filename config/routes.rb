@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   root to: 'pages#index'
 
+  resources :reset_passwords, only: [:new, :create, :update, :edit]
+
   resources :users, only: [:new, :create] do
     member do
       get :activate
