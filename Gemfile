@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 git_source(:github) do |repo_name|
-  repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
+  repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?('/')
   "https://github.com/#{repo_name}.git"
 end
 
@@ -40,6 +40,7 @@ group :development, :test do
   gem 'byebug', platform: :mri
 end
 
+gem 'delayed_job_active_record'
 gem 'sorcery'
 gem 'validates_email_format_of'
 

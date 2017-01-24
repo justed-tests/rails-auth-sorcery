@@ -31,6 +31,14 @@ class UsersController < ApplicationController
     end
   end
 
+  # not tested & mailer didn't exist
+  def unlock
+    @user = User.load_from_unlock_token(params[:token])
+    @user.unlock!
+    flash[:success] = 'Account was successfully unlocked'
+    redirect_to root_path
+  end
+
   private
 
   def user_params
