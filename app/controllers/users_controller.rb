@@ -1,6 +1,6 @@
 # control your users
 class UsersController < ApplicationController
-  skip_before_action :require_login, only: [:create, :new]
+  skip_before_action :require_login, only: [:create, :new, :activate]
 
   def new
     @user = User.new
@@ -15,6 +15,19 @@ class UsersController < ApplicationController
       redirect_to root_path
     else
       render 'new'
+    end
+  end
+
+  def activate
+    @user = User.load_from_activation_token(params[:id])
+
+    if @user
+      @user.activate!
+      flash[:success] = 'User was successfully activated'
+      redirect_to log_in_path
+    else
+      flash[:warning] = 'Cannot activate this user'
+      redirect_to root_path
     end
   end
 
